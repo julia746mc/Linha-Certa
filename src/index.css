@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Deep ocean teal palette */
+    --background: 200 20% 97%;
+    --foreground: 200 40% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 200 40% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 40% 10%;
+
+    /* Teal primary */
+    --primary: 185 60% 28%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 200 15% 92%;
+    --secondary-foreground: 200 40% 15%;
+
+    --muted: 200 12% 94%;
+    --muted-foreground: 200 10% 50%;
+
+    /* Amber accent */
+    --accent: 38 92% 55%;
+    --accent-foreground: 38 90% 12%;
+
+    --destructive: 4 76% 52%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 200 15% 89%;
+    --input: 200 15% 89%;
+    --ring: 185 60% 28%;
+
+    --radius: 0.75rem;
+
+    /* Transport colors */
+    --transit-train: 185 60% 28%;
+    --transit-metro: 262 48% 48%;
+    --transit-bus: 38 92% 55%;
+
+    /* Status colors */
+    --status-ok: 152 56% 42%;
+    --status-warning: 38 92% 55%;
+    --status-critical: 4 76% 52%;
+
+    /* Surface layers */
+    --surface-elevated: 0 0% 100%;
+    --surface-sunken: 200 20% 95%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+/* Mobile preview helper: add `mobile-preview` to the <body> to force a phone-sized preview */
+.mobile-preview {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  background: hsl(var(--background));
+}
+
+.mobile-preview #root {
+  width: 390px; /* typical iPhone/Android preview width */
+  height: calc(100vh - 48px);
+  margin: 24px 0;
+  border-radius: 24px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: 0 20px 40px rgba(2,6,23,0.12);
+  background: hsl(var(--card));
+  /* Make positioned children layout relative to the phone frame */
+  position: relative;
+}
+
+/* Keep page scroll available; the app content will scroll inside the phone frame */
+
+/* Make any element that uses the `fixed` utility inside the phone frame be positioned
+   absolutely relative to the frame. This ensures buttons like "Voltar" and the
+   bottom navigation stay inside the mobile mock instead of being placed outside. */
+.mobile-preview #root .fixed:not(nav) {
+  position: absolute !important;
+  /* keep them above regular content */
+  z-index: 999;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(185 50% 40%));
+  }
+
+  .glass-surface {
+    backdrop-filter: blur(16px) saturate(180%);
+    background-color: hsla(0, 0%, 100%, 0.85);
+  }
+
+  .transit-shadow {
+    box-shadow:
+      0 1px 3px hsla(200, 40%, 10%, 0.06),
+      0 4px 12px hsla(200, 40%, 10%, 0.08);
+  }
+
+  .transit-shadow-lg {
+    box-shadow:
+      0 2px 6px hsla(200, 40%, 10%, 0.06),
+      0 8px 24px hsla(200, 40%, 10%, 0.12);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 16px);
+  }
+}
+
+/* Animations */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
