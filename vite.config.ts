@@ -1,10 +1,10 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-// componentTagger removed when renaming/removing 'lovable' references
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  base: "/Linha-Certa/", // 👈 ADICIONA ISSO
+
   server: {
     host: "::",
     port: 8080,
