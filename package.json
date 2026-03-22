@@ -2,16 +2,8 @@
   "name": "vite_react_shadcn_ts",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://julia746mc.github.io/Linha-Certa",
-   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "deploy": "yarn build && gh-pages -d dist"
-  }
-}
-
   "type": "module",
+  "homepage": "https://julia746mc.github.io/Linha-Certa",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -19,7 +11,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "deploy": "yarn build && gh-pages -d dist"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
