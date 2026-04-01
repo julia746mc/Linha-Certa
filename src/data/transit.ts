@@ -84,7 +84,7 @@ export interface NewsItem {
 
 export interface TicketCard {
   id: string;
-  type: "bilhete_unico" | "top" | "top";
+  type: "bilhete_unico" | "top";
   name: string;
   number: string;
   balance: number;
@@ -305,10 +305,10 @@ export const mockLines: Line[] = [
       { name: "Alto da Boa Vista" },
       { name: "Borba Gato" },
       { name: "Brooklin" },
-      { name: "Campo Belo" },
+      { name: "Campo Belo", isTransfer: true, transferLines: ["Linha 17"] },
       { name: "Eucaliptos" },
       { name: "Moema" },
-      { name: "AACD-Servidor" },
+      { name: "AACD-Servidor", isTransfer: true, transferLines: ["Linha 17"] },
       { name: "Hospital São Paulo" },
       { name: "Santa Cruz", isTransfer: true, transferLines: ["Linha 1"] },
       { name: "Chácara Klabin", isTransfer: true, transferLines: ["Linha 2"] },
@@ -391,7 +391,7 @@ export const mockLines: Line[] = [
       { name: "Cidade Jardim" },
       { name: "Vila Olímpia" },
       { name: "Berrini" },
-      { name: "Morumbi" },
+      { name: "Morumbi", isTransfer: true, transferLines: ["Linha 17"] },
       { name: "Granja Julieta" },
       { name: "Santo Amaro", isTransfer: true, transferLines: ["Linha 5"] },
       { name: "Socorro" },
@@ -508,6 +508,23 @@ export const mockLines: Line[] = [
     status: "warning",
     statusMessage: "Monotrilho com intervalo ampliado",
   },
+    {
+    id: "l17",
+    name: "Linha 17 - Ouro",
+    type: "metro",
+    color: "#D4A017",
+    stations: [
+    { name: "Morumbi", isTransfer: true, transferLines: ["Linha 9"] },
+    { name: "Campo Belo", isTransfer: true, transferLines: ["Linha 5"] },
+    { name: "Vereador José Diniz" },
+    { name: "Aeroporto de Congonhas" },
+    { name: "AACD-Servidor", isTransfer: true, transferLines: ["Linha 5"] },
+    { name: "Jardim Aeroporto" },
+    { name: "Washington Luís" },
+  ],
+  status: "ok",
+  statusMessage: "Operação normal",
+},
   {
     id: "lexp",
     name: "Expresso Aeroporto",
@@ -590,7 +607,7 @@ export const mockRouteResults: RouteResult[] = [
       { type: "metro", line: "Linha 1", lineColor: "#0455a1", from: "Sé", to: "Paraíso", duration: "8 min", stations: 4 },
     ],
     transfers: 2,
-    fare: "R$ 4,40",
+    fare: "R$ 5.40",
   },
   {
     id: "r2",
@@ -603,7 +620,7 @@ export const mockRouteResults: RouteResult[] = [
       { type: "metro", line: "Linha 1", lineColor: "#0455a1", from: "Santa Cruz", to: "Paraíso", duration: "6 min", stations: 3 },
     ],
     transfers: 2,
-    fare: "R$ 4,40",
+    fare: "R$ 5.40",
   },
   {
     id: "r3",
@@ -615,7 +632,7 @@ export const mockRouteResults: RouteResult[] = [
       { type: "metro", line: "Linha 2", lineColor: "#007e5e", from: "Consolação", to: "Paraíso", duration: "8 min", stations: 3 },
     ],
     transfers: 1,
-    fare: "R$ 4,40",
+    fare: "R$ 5.40",
   },
 ];
 
@@ -641,12 +658,12 @@ export const mockTickets: TicketCard[] = [
 ];
 
 export const ticketHistory = [
-  { id: "th1", date: "20 Mar", description: "Metrô - Linha 4 Pinheiros", value: -4.40 },
-  { id: "th2", date: "20 Mar", description: "Ônibus - 8700 Term. Pinheiros", value: -4.40 },
+  { id: "th1", date: "20 Mar", description: "Metrô - Linha 4 Pinheiros", value: -5.40 },
+  { id: "th2", date: "20 Mar", description: "Ônibus - 8700 Term. Pinheiros", value: -5.30 },
   { id: "th3", date: "19 Mar", description: "Recarga - PIX", value: 50.00 },
-  { id: "th4", date: "19 Mar", description: "Metrô - Linha 1 Paraíso", value: -4.40 },
-  { id: "th5", date: "19 Mar", description: "Trem - Linha 9 Vila Olímpia", value: -4.40 },
-  { id: "th6", date: "18 Mar", description: "Metrô - Linha 3 Sé", value: -4.40 },
-  { id: "th7", date: "18 Mar", description: "Ônibus - 5010 Av. Paulista", value: -4.40 },
+  { id: "th4", date: "19 Mar", description: "Metrô - Linha 1 Paraíso", value: -5.40 },
+  { id: "th5", date: "19 Mar", description: "Trem - Linha 9 Vila Olímpia", value: -5.40 },
+  { id: "th6", date: "18 Mar", description: "Metrô - Linha 3 Sé", value: -5.40 },
+  { id: "th7", date: "18 Mar", description: "Ônibus - 5010 Av. Paulista", value: -5.30 },
   { id: "th8", date: "17 Mar", description: "Recarga - Cartão de crédito", value: 100.00 },
 ];
